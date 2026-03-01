@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from _curses import COLOR_YELLOW, COLOR_RED
+
 import ce2
 import pygame
 from pygame import Font, Surface, Rect
@@ -13,15 +15,19 @@ class Menu:
         self.surf = pygame.image.load('./asset/MenuBg.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
-    def run(self, text_size=None):
+    def run(self, ):
+        menu_option = 0
         pygame.mixer_music.load('./asset/Menu.mp3')
         pygame.mixer_music.play(-1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(50,"Mountain", COLOR_WHITE, ((WIN_WIDTH / 2), 70))
-            self.menu_text(50, "Shooter", COLOR_WHITE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50,"Mountain", COLOR_ORANGE, ((WIN_WIDTH / 2), 70))
+            self.menu_text(50, "Shooter", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
 
             for i in range (len(MENU_OPTION)):
+                if i == menu_option:
+                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
                 self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
 
             pygame.display.flip()
