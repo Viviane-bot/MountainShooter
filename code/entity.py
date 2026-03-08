@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 import pygame
 
 
-class Entity (ABC):
+class Entity(ABC):
     def __init__(self, name: str, position: tuple):
         self.name = name
         self.surf = pygame.image.load('./asset/' + name + '.png')
